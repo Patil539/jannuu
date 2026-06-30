@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Countdown ❤️</title>
+<style>
+body{
+margin:0;font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+overflow-x:hidden;color:white;text-align:center;
+}
+.hero{padding:30px}
+h1{font-size:3rem;text-shadow:0 0 15px rgba(255,255,255,.8);}
+#countdown{
+display:flex;justify-content:center;gap:15px;flex-wrap:wrap;
+margin:20px auto;
+}
+.box{
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(8px);
+padding:20px;border-radius:20px;min-width:100px;
+box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+.num{font-size:2rem;font-weight:bold;}
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;padding:20px;
+}
+.gallery img{
+width:100%;height:320px;object-fit:cover;border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+transition:.4s;
+}
+.gallery img:hover{transform:scale(1.04);}
+.msg{
+max-width:800px;margin:auto;padding:20px;font-size:1.2rem;
+}
+</style>
+</head>
+<body>
+<audio autoplay loop controls>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div class="hero">
+<h1>🎂 Countdown to 28 July 🎂</h1>
+<p>A little journey of memories, smiles and birthday magic ✨</p>
+<div id="countdown"></div>
+</div>
+
+<div class="gallery">
+<img src="photo1.jpeg">
+<img src="photo2.jpeg">
+<img src="photo3.jpeg">
+<img src="photo4.jpeg">
+</div>
+
+<div class="msg">
+💖 Every second brings the special day a little closer. May this countdown be filled with excitement, beautiful memories and happiness. 🌸
+</div>
+
+<script>
+const target = new Date("July 28, 2026 00:00:00").getTime();
+function update(){
+const now = new Date().getTime();
+const diff = target-now;
+if(diff<=0){
+document.getElementById("countdown").innerHTML="<h2>🎉 Happy Birthday! 🎉</h2>";
+return;
+}
+const d=Math.floor(diff/(1000*60*60*24));
+const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+const m=Math.floor((diff%(1000*60*60))/(1000*60));
+const s=Math.floor((diff%(1000*60))/1000);
+document.getElementById("countdown").innerHTML=`
+<div class='box'><div class='num'>${d}</div>Days</div>
+<div class='box'><div class='num'>${h}</div>Hours</div>
+<div class='box'><div class='num'>${m}</div>Minutes</div>
+<div class='box'><div class='num'>${s}</div>Seconds</div>`;
+}
+setInterval(update,1000); update();
+</script>
+</body>
+</html>
